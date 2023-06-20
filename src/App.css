@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container-manager {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  margin-top: 5%;
+  max-width: 800px;
+  margin-left: 5%;
+}
+.input-manager-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.input-manager-last-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 40%;
+  max-width: 50%;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.input-manager-btn-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 40%;
+  max-width: 50%;
+  margin-bottom: 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.result-images-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.result-images-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.image-item-wrap  {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 33%;
+  margin-right: 20px;
+}
+.input-manager-last-photo-item-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.image-item-wrap img, .input-manager-last-photo-item-wrap img {
+  max-width: 200px;
+  max-height: 200px;
 }
