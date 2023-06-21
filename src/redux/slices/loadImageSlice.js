@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    lastLoadedImage: 3,
+    lastLoadedImage: undefined,
     images: [],
 }
 
@@ -11,7 +11,8 @@ export const loadImageSlice = createSlice({
     reducers: {
         loadImage(state, action) {
             state.lastLoadedImage = action.payload;
-        }
+            state.images = [...state.images, action.payload];
+        },
     },
 });
 

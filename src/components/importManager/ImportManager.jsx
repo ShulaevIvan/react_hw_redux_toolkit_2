@@ -1,54 +1,46 @@
 import React from "react";
-import { useEffect, useState, useRef } from "react";
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadImage } from "../../redux/slices/loadImageSlice";
+import PhotoItem from "../photoItem/PhotoItem";
 
 const ImportManager = () => {
-    const {lastLoadedImage} = useSelector((state) => state.images);
+    const {images} = useSelector((state) => state.images);
     const dispatch = useDispatch();
     const inputRef = useRef(null);
     const imgRef = useRef(null);
 
     const uploadFileHandler = () => {
-        const fiels = inputRef.current.files;
-        if (fiels.length > 1)  {
-            return 0;
-        }
-        dispatch(loadImage(JSON.stringify(fiels[0])));
-        imgRef.current.src = URL.createObjectURL(fiels[0])
-    }
-
-
+        const files = inputRef.current.files;
+        const imgBlob = URL.createObjectURL(files[0]);
+        const imgToState = {id: Math.random(), blob: imgBlob}
+        dispatch((loadImage(imgToState)));
+        imgRef.current.src = imgBlob;
+    };
 
     return (
-       
         <React.Fragment>
-             {console.log(JSON.parse(lastLoadedImage))}
             <div className="container-manager">
                 <div className="input-manager-wrap">
                     <div className="input-manager-last-photo-wrap">
                         <div className="input-manager-last-photo-item-wrap">
-                            <img  ref={imgRef} alt="#" />
+                            {images.length > 0 ? <img ref={imgRef} alt="" src={imgRef.current.src} /> : <img  ref={imgRef} alt={''} /> }
+                        </div>
+
+                        <div className="other-photo-row">
+                            {images.map((item, i) => {
+                                return (
+                                    <PhotoItem key={Math.random() + i} img={item.blob} />
+                                )
+                            }).slice(0,-1)}
                         </div>
                     </div>
                     <div className="input-manager-btn-wrap">
-                        <input ref={inputRef} className="input-manager-btn" type="file" multiple onChange={uploadFileHandler} />
+                        <input ref={inputRef} className="input-manager-btn" type="file" onChange={uploadFileHandler} />
                     </div>
                 </div>
                 
-                <div className="result-images-wrap">
-                    <div className="result-images-row">
-                        <div className="image-item-wrap">
-                            <img src="https://placeimg.com/400/400/nature" alt="#" />
-                        </div>
-                        <div className="image-item-wrap">
-                            <img src="https://placeimg.com/400/400/nature" alt="#" />
-                        </div>
-                        <div className="image-item-wrap">
-                            <img src="https://placeimg.com/400/400/nature" alt="#" />
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </React.Fragment>
     );
