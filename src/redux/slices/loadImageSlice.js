@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     lastLoadedImage: undefined,
     images: [],
-}
+};
 
 export const loadImageSlice = createSlice({
     name: 'loadImage',
